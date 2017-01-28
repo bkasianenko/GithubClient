@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GHRepo.h"
 
 @interface GHNetworkManager : NSObject
 
@@ -16,5 +17,8 @@
                  password:(NSString *)password
                   success:(void(^)(void))successBlock
                   failure:(void(^)(NSError* error))failureBlock;
+
+- (void)fetchUserReposSuccess:(void(^)(NSArray<GHRepo*>* repos))successBlock
+                      failure:(void(^)(NSError* error))failureBlock;
 
 @end

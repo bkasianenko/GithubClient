@@ -7,6 +7,7 @@
 //
 
 #import "GHNetworkManager.h"
+#import "GHResponseSerializer.h"
 #import <AFNetworking/AFNetworking.h>
 
 #define BASE_URL @"https://api.github.com"
@@ -22,7 +23,7 @@
 
 @implementation GHNetworkManager
 
-#pragma mark - Public interface
+#pragma mark - Public
 
 + (instancetype)sharedManager
 {
@@ -58,6 +59,27 @@
                          if (successBlock != nil)
                          {
                              successBlock();
+                         }
+                     }
+                     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                         if (failureBlock != nil)
+                         {
+                             failureBlock(error);
+                         }
+                     }];
+}
+
+- (void)fetchUserReposSuccess:(void(^)(NSArray<GHRepo*>* repos))successBlock
+                      failure:(void(^)(NSError* error))failureBlock
+{
+    [self.sessionManager GET:@"/user/repos"
+                  parameters:nil
+                    progress:nil
+                     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                         if (successBlock != nil)
+                         {
+                             NSArray<GHRepo*>* repos = [GHResponseSerializer reposFromResponseObject:responseObject];
+                             successBlock(repos);
                          }
                      }
                      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
