@@ -10,4 +10,17 @@
 
 @implementation GHRepo
 
+- (NSString*)desc
+{
+    if ([_desc isEqual:[NSNull null]])
+    {
+        return @"Описание отсутствует";
+    }
+    if (_desc.length == 0)
+    {
+        return @"Описание отсутствует";
+    }
+    return _desc;
+}
+
 @end

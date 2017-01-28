@@ -7,8 +7,12 @@
 //
 
 #import "GHLoginViewController.h"
+#import "GHNetworkManager.h"
 
 @interface GHLoginViewController ()
+
+@property (weak, nonatomic) IBOutlet UITextField* loginTextField;
+@property (weak, nonatomic) IBOutlet UITextField* passwordTextField;
 
 @end
 
@@ -17,6 +21,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
+
+- (IBAction)loginAction:(id)sender
+{
+    [[GHNetworkManager sharedManager] authUserWithLogin:self.loginTextField.text
+                                               password:self.passwordTextField.text
+                                                success:^{
+                                                    [self performSegueWithIdentifier:@"ReposListSegue" sender:self];
+                                                }
+                                                failure:^(NSError *error) {
+                                                    NSLog(@"%@", error);
+                                                }];
 }
 
 @end

@@ -10,6 +10,8 @@
 		44693EA38C41E8BB4F66D30E /* libPods-GithubClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62EBA0293B89EA189049CA67 /* libPods-GithubClient.a */; };
 		B9418D9A1E3CEAC700367BBC /* GHRepo.m in Sources */ = {isa = PBXBuildFile; fileRef = B9418D991E3CEAC700367BBC /* GHRepo.m */; };
 		B9418D9D1E3CEC6E00367BBC /* GHResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B9418D9C1E3CEC6E00367BBC /* GHResponseSerializer.m */; };
+		B9418DA01E3CFED000367BBC /* GHReposListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9418D9F1E3CFED000367BBC /* GHReposListViewController.m */; };
+		B9418DA31E3D030400367BBC /* GHReposSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9418DA21E3D030400367BBC /* GHReposSearchViewController.m */; };
 		B95E64741E3CC4660032A601 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B95E64731E3CC4660032A601 /* main.m */; };
 		B95E647F1E3CC4660032A601 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B95E647E1E3CC4660032A601 /* Assets.xcassets */; };
 		B95E648C1E3CC7770032A601 /* GHLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B95E648B1E3CC7770032A601 /* GHLoginViewController.m */; };
@@ -27,6 +29,10 @@
 		B9418D991E3CEAC700367BBC /* GHRepo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHRepo.m; path = Model/GHRepo.m; sourceTree = "<group>"; };
 		B9418D9B1E3CEC6E00367BBC /* GHResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHResponseSerializer.h; path = Model/GHResponseSerializer.h; sourceTree = "<group>"; };
 		B9418D9C1E3CEC6E00367BBC /* GHResponseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHResponseSerializer.m; path = Model/GHResponseSerializer.m; sourceTree = "<group>"; };
+		B9418D9E1E3CFED000367BBC /* GHReposListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHReposListViewController.h; path = Controllers/GHReposListViewController.h; sourceTree = "<group>"; };
+		B9418D9F1E3CFED000367BBC /* GHReposListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHReposListViewController.m; path = Controllers/GHReposListViewController.m; sourceTree = "<group>"; };
+		B9418DA11E3D030400367BBC /* GHReposSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHReposSearchViewController.h; path = Controllers/GHReposSearchViewController.h; sourceTree = "<group>"; };
+		B9418DA21E3D030400367BBC /* GHReposSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHReposSearchViewController.m; path = Controllers/GHReposSearchViewController.m; sourceTree = "<group>"; };
 		B95E646F1E3CC4650032A601 /* GithubClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B95E64731E3CC4660032A601 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B95E647E1E3CC4660032A601 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -115,6 +121,10 @@
 			children = (
 				B95E648A1E3CC7770032A601 /* GHLoginViewController.h */,
 				B95E648B1E3CC7770032A601 /* GHLoginViewController.m */,
+				B9418D9E1E3CFED000367BBC /* GHReposListViewController.h */,
+				B9418D9F1E3CFED000367BBC /* GHReposListViewController.m */,
+				B9418DA11E3D030400367BBC /* GHReposSearchViewController.h */,
+				B9418DA21E3D030400367BBC /* GHReposSearchViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -276,7 +286,9 @@
 				B95E648C1E3CC7770032A601 /* GHLoginViewController.m in Sources */,
 				B9418D9A1E3CEAC700367BBC /* GHRepo.m in Sources */,
 				B95E649B1E3CD2BC0032A601 /* GHNetworkManager.m in Sources */,
+				B9418DA01E3CFED000367BBC /* GHReposListViewController.m in Sources */,
 				B95E64741E3CC4660032A601 /* main.m in Sources */,
+				B9418DA31E3D030400367BBC /* GHReposSearchViewController.m in Sources */,
 				B95E64911E3CC7ED0032A601 /* GHAppDelegate.m in Sources */,
 				B9418D9D1E3CEC6E00367BBC /* GHResponseSerializer.m in Sources */,
 			);
