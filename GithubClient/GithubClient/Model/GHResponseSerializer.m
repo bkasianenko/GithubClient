@@ -10,7 +10,7 @@
 
 @implementation GHResponseSerializer
 
-+ (NSArray<GHRepo*>*)reposFromResponseObject:(id)response
++ (NSArray<GHRepo*>*)reposFromUserResponseObject:(id)response
 {
     NSMutableArray<GHRepo*>* repos = [NSMutableArray new];
     for (NSDictionary* repoDict in response)
@@ -22,6 +22,13 @@
         [repos addObject:repo];
     }
     return repos;
+}
+
++ (NSArray<GHRepo*>*)reposFromSearchResponseObject:(id)response
+{
+    NSDictionary* responseDict = (NSDictionary*)response;
+    NSArray* responseRepos = responseDict[@"items"];
+    return [self reposFromUserResponseObject:responseRepos];
 }
 
 @end

@@ -21,4 +21,8 @@
 - (void)fetchUserReposSuccess:(void(^)(NSArray<GHRepo*>* repos))successBlock
                       failure:(void(^)(NSError* error))failureBlock;
 
+- (void)searchReposByQuery:(NSString*)searchQuery
+                   success:(void(^)(NSArray<GHRepo*>* repos))successBlock
+                   failure:(void(^)(NSError* error))failureBlock;
+
 @end

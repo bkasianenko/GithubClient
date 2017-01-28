@@ -78,7 +78,40 @@
                      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                          if (successBlock != nil)
                          {
-                             NSArray<GHRepo*>* repos = [GHResponseSerializer reposFromResponseObject:responseObject];
+                             NSArray<GHRepo*>* repos = [GHResponseSerializer reposFromUserResponseObject:responseObject];
+                             successBlock(repos);
+                         }
+                     }
+                     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                         if (failureBlock != nil)
+                         {
+                             failureBlock(error);
+                         }
+                     }];
+}
+
+- (void)searchReposByQuery:(NSString*)searchQuery
+                   success:(void(^)(NSArray<GHRepo*>* repos))successBlock
+                   failure:(void(^)(NSError* error))failureBlock
+{
+    NSError* queryValidateError = [self validateSearchQuery:searchQuery];
+    if (queryValidateError != nil)
+    {
+        if (failureBlock != nil)
+        {
+            failureBlock(queryValidateError);
+        }
+        return;
+    }
+    
+    NSDictionary* params = @{@"q": searchQuery};
+    [self.sessionManager GET:@"/search/repositories"
+                  parameters:params
+                    progress:nil
+                     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                         if (successBlock != nil)
+                         {
+                             NSArray<GHRepo*>* repos = [GHResponseSerializer reposFromSearchResponseObject:responseObject];
                              successBlock(repos);
                          }
                      }
@@ -129,6 +162,15 @@
     if (password.length == 0)
     {
         return [NSError errorWithDomain:@"" code:ERROR_EMPTY_PASSWORD userInfo:@{NSLocalizedDescriptionKey: @"Поле пароля не заполнено"}];
+    }
+    return nil;
+}
+
+- (NSError*)validateSearchQuery:(NSString*)searchQuery
+{
+    if (searchQuery.length == 0)
+    {
+        return [NSError errorWithDomain:@"" code:ERROR_EMPTY_LOGIN userInfo:@{NSLocalizedDescriptionKey: @"Поле поиска пустое"}];
     }
     return nil;
 }
