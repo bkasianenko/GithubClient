@@ -102,7 +102,7 @@
 - (UIView*)leftViewWithImage:(UIImage*)image
 {
     UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 28, 30)];
-    UIImageView* iconView = [[UIImageView alloc] initWithFrame:CGRectMake(6, 8, 14, 14)];
+    UIImageView* iconView = [[UIImageView alloc] initWithFrame:CGRectMake(6, 6, 18, 18)];
     iconView.image = image;
     iconView.tintColor = [UIColor colorWithRed:0.46 green:0.51 blue:0.61 alpha:1.0];
     [view addSubview:iconView];
