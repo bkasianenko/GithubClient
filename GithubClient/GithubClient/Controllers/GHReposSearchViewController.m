@@ -9,6 +9,7 @@
 #import "GHReposSearchViewController.h"
 #import "GHRepo.h"
 #import "GHNetworkManager.h"
+#import "GHRepoCell.h"
 
 @interface GHReposSearchViewController () <UISearchResultsUpdating>
 
@@ -24,12 +25,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.tableView registerNib:[UINib nibWithNibName:@"GHRepoCell" bundle:nil] forCellReuseIdentifier:@"RepoCell"];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 55;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationItem.title = @"Repositories search";
 }
 
 #pragma mark - Table view data source
@@ -50,12 +54,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RepoCell" forIndexPath:indexPath];
+    GHRepoCell *cell = (GHRepoCell *)[tableView dequeueReusableCellWithIdentifier:@"RepoCell" forIndexPath:indexPath];
     if ([self searchBarActive])
     {
-        GHRepo* repo = self.searchResults[indexPath.row];
-        cell.textLabel.text = repo.name;
-        cell.detailTextLabel.text = repo.desc;
+        cell.repo = self.searchResults[indexPath.row];
     }
     return cell;
 }

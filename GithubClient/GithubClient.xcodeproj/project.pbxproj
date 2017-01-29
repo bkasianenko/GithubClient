@@ -19,6 +19,8 @@
 		B95E64971E3CCAD00032A601 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95E64931E3CCAD00032A601 /* LaunchScreen.storyboard */; };
 		B95E64981E3CCAD00032A601 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95E64951E3CCAD00032A601 /* Main.storyboard */; };
 		B95E649B1E3CD2BC0032A601 /* GHNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B95E649A1E3CD2BC0032A601 /* GHNetworkManager.m */; };
+		B97018E81E3DEDA100966669 /* GHRepoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B97018E61E3DEDA100966669 /* GHRepoCell.m */; };
+		B97018E91E3DEDA100966669 /* GHRepoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B97018E71E3DEDA100966669 /* GHRepoCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,9 @@
 		B95E64961E3CCAD00032A601 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = UI/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B95E64991E3CD2BC0032A601 /* GHNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHNetworkManager.h; path = Model/GHNetworkManager.h; sourceTree = "<group>"; };
 		B95E649A1E3CD2BC0032A601 /* GHNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHNetworkManager.m; path = Model/GHNetworkManager.m; sourceTree = "<group>"; };
+		B97018E51E3DEDA100966669 /* GHRepoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHRepoCell.h; path = UI/Views/GHRepoCell.h; sourceTree = "<group>"; };
+		B97018E61E3DEDA100966669 /* GHRepoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHRepoCell.m; path = UI/Views/GHRepoCell.m; sourceTree = "<group>"; };
+		B97018E71E3DEDA100966669 /* GHRepoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GHRepoCell.xib; path = UI/Views/GHRepoCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,10 +159,21 @@
 		B95E64921E3CCAB60032A601 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				B97018E41E3DED2400966669 /* Views */,
 				B95E64931E3CCAD00032A601 /* LaunchScreen.storyboard */,
 				B95E64951E3CCAD00032A601 /* Main.storyboard */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		B97018E41E3DED2400966669 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B97018E51E3DEDA100966669 /* GHRepoCell.h */,
+				B97018E61E3DEDA100966669 /* GHRepoCell.m */,
+				B97018E71E3DEDA100966669 /* GHRepoCell.xib */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,6 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B97018E91E3DEDA100966669 /* GHRepoCell.xib in Resources */,
 				B95E64981E3CCAD00032A601 /* Main.storyboard in Resources */,
 				B95E647F1E3CC4660032A601 /* Assets.xcassets in Resources */,
 				B95E64971E3CCAD00032A601 /* LaunchScreen.storyboard in Resources */,
@@ -289,6 +306,7 @@
 				B9418DA01E3CFED000367BBC /* GHReposListViewController.m in Sources */,
 				B95E64741E3CC4660032A601 /* main.m in Sources */,
 				B9418DA31E3D030400367BBC /* GHReposSearchViewController.m in Sources */,
+				B97018E81E3DEDA100966669 /* GHRepoCell.m in Sources */,
 				B95E64911E3CC7ED0032A601 /* GHAppDelegate.m in Sources */,
 				B9418D9D1E3CEC6E00367BBC /* GHResponseSerializer.m in Sources */,
 			);
