@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,18 +23,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_github_logo" translatesAutoresizingMaskIntoConstraints="NO" id="RRa-qT-f7n">
-                                <rect key="frame" x="87.5" y="28" width="200" height="82"/>
+                                <rect key="frame" x="97.5" y="28" width="180" height="74"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="82" id="XEO-jJ-CCa"/>
-                                    <constraint firstAttribute="width" constant="200" id="rbT-P8-FFv"/>
+                                    <constraint firstAttribute="width" secondItem="RRa-qT-f7n" secondAttribute="height" multiplier="100:41" id="GgM-44-DPD"/>
+                                    <constraint firstAttribute="width" constant="180" id="rbT-P8-FFv"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u0f-7f-Is7">
-                                <rect key="frame" x="87.5" y="194" width="200" height="30"/>
+                                <rect key="frame" x="87.5" y="196" width="200" height="40"/>
                                 <color key="backgroundColor" red="0.10227528959512711" green="0.73879390954971313" blue="0.60999447107315063" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="91x-qh-1cw"/>
-                                    <constraint firstAttribute="height" constant="30" id="GrM-da-wF2"/>
+                                    <constraint firstAttribute="height" constant="40" id="GrM-da-wF2"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Log In"/>
@@ -42,14 +43,11 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KCS-fu-6M8">
-                                <rect key="frame" x="67.5" y="118" width="240" height="61"/>
+                                <rect key="frame" x="57.5" y="110" width="260" height="71"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uoj-iN-CDn">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="260" height="35"/>
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="1OO-Bu-oZn"/>
-                                        </constraints>
                                         <color key="textColor" red="0.27843137254901962" green="0.27843137254901962" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
@@ -58,11 +56,8 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qID-BB-7xv">
-                                        <rect key="frame" x="0.0" y="31" width="240" height="30"/>
+                                        <rect key="frame" x="0.0" y="36" width="260" height="35"/>
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="RA3-Zd-3Y6"/>
-                                        </constraints>
                                         <color key="textColor" red="0.27843137254901962" green="0.27843137254901962" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
@@ -71,7 +66,7 @@
                                         </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YRu-nh-Nq5">
-                                        <rect key="frame" x="0.0" y="30" width="240" height="1"/>
+                                        <rect key="frame" x="0.0" y="35" width="260" height="1"/>
                                         <color key="backgroundColor" red="0.90749013423919678" green="0.91847819089889526" blue="0.92500000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="muC-v8-QQx"/>
@@ -81,25 +76,26 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="qID-BB-7xv" secondAttribute="bottom" id="3RX-ez-x0R"/>
-                                    <constraint firstAttribute="height" constant="61" id="45f-BO-CBH"/>
+                                    <constraint firstAttribute="height" constant="71" id="45f-BO-CBH"/>
                                     <constraint firstAttribute="trailing" secondItem="YRu-nh-Nq5" secondAttribute="trailing" id="BnI-by-5xq"/>
                                     <constraint firstItem="YRu-nh-Nq5" firstAttribute="top" secondItem="Uoj-iN-CDn" secondAttribute="bottom" id="EfA-MJ-E04"/>
                                     <constraint firstItem="YRu-nh-Nq5" firstAttribute="leading" secondItem="KCS-fu-6M8" secondAttribute="leading" id="RO1-fS-fSj"/>
                                     <constraint firstItem="qID-BB-7xv" firstAttribute="top" secondItem="YRu-nh-Nq5" secondAttribute="bottom" id="TnJ-gg-9uX"/>
                                     <constraint firstItem="qID-BB-7xv" firstAttribute="leading" secondItem="KCS-fu-6M8" secondAttribute="leading" id="dFE-UE-uO3"/>
                                     <constraint firstItem="Uoj-iN-CDn" firstAttribute="leading" secondItem="KCS-fu-6M8" secondAttribute="leading" id="j4f-Nx-MN7"/>
-                                    <constraint firstAttribute="width" constant="240" id="ni3-AY-Duv"/>
+                                    <constraint firstItem="qID-BB-7xv" firstAttribute="height" secondItem="Uoj-iN-CDn" secondAttribute="height" id="mJd-hm-ctF"/>
+                                    <constraint firstAttribute="width" constant="260" id="ni3-AY-Duv"/>
                                     <constraint firstAttribute="trailing" secondItem="Uoj-iN-CDn" secondAttribute="trailing" id="rAb-0Y-AGe"/>
                                     <constraint firstItem="Uoj-iN-CDn" firstAttribute="top" secondItem="KCS-fu-6M8" secondAttribute="top" id="sss-Js-6i9"/>
                                     <constraint firstAttribute="trailing" secondItem="qID-BB-7xv" secondAttribute="trailing" id="xwF-HZ-fVT"/>
                                 </constraints>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="FJo-zh-GNV">
-                                <rect key="frame" x="315.5" y="154" width="20" height="20"/>
+                                <rect key="frame" x="325.5" y="153.5" width="20" height="20"/>
                                 <color key="color" red="0.10227528959512711" green="0.73879390954971313" blue="0.60999447107315063" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xrt-IS-sMK">
-                                <rect key="frame" x="67.5" y="236" width="240" height="17"/>
+                                <rect key="frame" x="57.5" y="248" width="260" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <color key="textColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>

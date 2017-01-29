@@ -149,16 +149,15 @@
     }
 }
 
-- (void)showEmptyMessageIfNeeded
+- (NSInteger)numberOfPagesWithPageSize:(NSInteger)pageSize totalCount:(NSInteger)totalCount
 {
-    if (self.searchResults.count == 0)
+    NSInteger pages = totalCount / pageSize;
+    NSInteger lastPageCount = totalCount % pageSize;
+    if (lastPageCount > 0)
     {
-        self.tableView.tableHeaderView = self.headerNoResultsView;
+        pages += 1;
     }
-    else
-    {
-        self.tableView.tableHeaderView = self.headerEmptyView;
-    }
+    return pages;
 }
 
 #pragma mark - Getters/Setters
@@ -203,17 +202,6 @@
         _page = 1;
     }
     return _page;
-}
-
-- (NSInteger)numberOfPagesWithPageSize:(NSInteger)pageSize totalCount:(NSInteger)totalCount
-{
-    NSInteger pages = totalCount / pageSize;
-    NSInteger lastPageCount = totalCount % pageSize;
-    if (lastPageCount > 0)
-    {
-        pages += 1;
-    }
-    return pages;
 }
 
 - (UIView*)headerNoResultsView

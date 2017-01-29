@@ -14,11 +14,11 @@
 {
     if ([_desc isEqual:[NSNull null]])
     {
-        return @"Описание отсутствует";
+        return @"No description";
     }
     if (_desc.length == 0)
     {
-        return @"Описание отсутствует";
+        return @"No description";
     }
     return _desc;
 }
