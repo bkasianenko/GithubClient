@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GHRepo.h"
+#import "GHReposResponse.h"
 
 @interface GHResponseSerializer : NSObject
 
-+ (NSArray<GHRepo*>*)reposFromUserResponseObject:(id)response;
-+ (NSArray<GHRepo*>*)reposFromSearchResponseObject:(id)response;
++ (GHReposResponse*)reposFromUserResponseObject:(id)response;
++ (GHReposResponse*)reposFromSearchResponseObject:(id)response;
 
 @end

@@ -18,11 +18,13 @@
                   success:(void(^)(void))successBlock
                   failure:(void(^)(NSError* error))failureBlock;
 
-- (void)fetchUserReposSuccess:(void(^)(NSArray<GHRepo*>* repos))successBlock
+- (void)fetchUserReposSuccess:(void(^)(NSArray<GHRepo*>* repos, NSInteger totalCount))successBlock
                       failure:(void(^)(NSError* error))failureBlock;
 
 - (void)searchReposByQuery:(NSString*)searchQuery
-                   success:(void(^)(NSArray<GHRepo*>* repos))successBlock
+                  pageSize:(NSInteger)pageSize
+                      page:(NSInteger)page
+                   success:(void(^)(NSArray<GHRepo*>* repos, NSInteger totalCount))successBlock
                    failure:(void(^)(NSError* error))failureBlock;
 
 @end

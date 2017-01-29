@@ -60,7 +60,7 @@
 
 - (void)fetchRepos
 {
-    [[GHNetworkManager sharedManager] fetchUserReposSuccess:^(NSArray<GHRepo *> *repos) {
+    [[GHNetworkManager sharedManager] fetchUserReposSuccess:^(NSArray<GHRepo *> *repos, NSInteger totalCount) {
         self.repos = repos;
         [self.tableView reloadData];
     }

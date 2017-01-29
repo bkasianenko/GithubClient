@@ -9,6 +9,7 @@
 #import "GHNetworkManager.h"
 #import "GHResponseSerializer.h"
 #import <AFNetworking/AFNetworking.h>
+#import "GHReposResponse.h"
 
 #define BASE_URL @"https://api.github.com"
 #define ERROR_EMPTY_LOGIN 1
@@ -69,7 +70,7 @@
                      }];
 }
 
-- (void)fetchUserReposSuccess:(void(^)(NSArray<GHRepo*>* repos))successBlock
+- (void)fetchUserReposSuccess:(void(^)(NSArray<GHRepo*>* repos, NSInteger totalCount))successBlock
                       failure:(void(^)(NSError* error))failureBlock
 {
     [self.sessionManager GET:@"/user/repos"
@@ -78,8 +79,8 @@
                      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                          if (successBlock != nil)
                          {
-                             NSArray<GHRepo*>* repos = [GHResponseSerializer reposFromUserResponseObject:responseObject];
-                             successBlock(repos);
+                             GHReposResponse* response = [GHResponseSerializer reposFromUserResponseObject:responseObject];
+                             successBlock(response.repos, response.totalCount);
                          }
                      }
                      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -91,7 +92,9 @@
 }
 
 - (void)searchReposByQuery:(NSString*)searchQuery
-                   success:(void(^)(NSArray<GHRepo*>* repos))successBlock
+                  pageSize:(NSInteger)pageSize
+                      page:(NSInteger)page
+                   success:(void(^)(NSArray<GHRepo*>* repos, NSInteger totalCount))successBlock
                    failure:(void(^)(NSError* error))failureBlock
 {
     NSError* queryValidateError = [self validateSearchQuery:searchQuery];
@@ -104,15 +107,24 @@
         return;
     }
     
-    NSDictionary* params = @{@"q": searchQuery};
+    NSMutableDictionary* params = [[NSMutableDictionary alloc] initWithDictionary:@{@"q": searchQuery}];
+    if (page > 0)
+    {
+        [params setObject:@(page) forKey:@"page"];
+    }
+    if (pageSize > 0)
+    {
+        [params setObject:@(pageSize) forKey:@"per_page"];
+    }
+    
     [self.sessionManager GET:@"/search/repositories"
                   parameters:params
                     progress:nil
                      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                          if (successBlock != nil)
                          {
-                             NSArray<GHRepo*>* repos = [GHResponseSerializer reposFromSearchResponseObject:responseObject];
-                             successBlock(repos);
+                             GHReposResponse* response = [GHResponseSerializer reposFromSearchResponseObject:responseObject];
+                             successBlock(response.repos, response.totalCount);
                          }
                      }
                      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

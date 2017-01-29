@@ -11,10 +11,20 @@
 #import "GHNetworkManager.h"
 #import "GHRepoCell.h"
 
+#define REPOS_PAGE_SIZE 20
+
 @interface GHReposSearchViewController () <UISearchResultsUpdating>
 
 @property (strong, nonatomic) UISearchController* searchController;
-@property (strong, nonatomic) NSArray<GHRepo*>* searchResults;
+@property (strong, nonatomic) NSMutableArray<GHRepo*>* searchResults;
+@property (assign, nonatomic) NSInteger page;
+@property (assign, nonatomic) NSInteger maxPages;
+@property (strong, nonatomic) NSString* searchQuery;
+
+@property (strong, nonatomic) UIView* headerNoResultsView;
+@property (strong, nonatomic) UIView* headerEmptyView;
+@property (strong, nonatomic) UIView* footerLoadingView;
+@property (strong, nonatomic) UIView* footerEmptyView;
 
 @end
 
@@ -34,6 +44,8 @@
 {
     [super viewWillAppear:animated];
     self.navigationItem.title = @"Repositories search";
+    //[self showEmptyMessageIfNeeded];
+    self.tableView.tableFooterView = [self tableFooterView];
 }
 
 #pragma mark - Table view data source
@@ -62,11 +74,91 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(nonnull UITableViewCell *)cell forRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    if (indexPath.row == self.searchResults.count - 1 && self.page <= self.maxPages && indexPath.section == 0)
+    {
+        self.page += 1;
+        [self searchReposByQuery:self.searchController.searchBar.text];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (self.searchResults.count == 0)
+    {
+        return 40;
+    }
+    return 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (self.searchResults.count == 0)
+    {
+        return self.headerNoResultsView;
+    }
+    else
+    {
+        return self.headerEmptyView;
+    }
+}
+
 #pragma mark - UISearchResultsUpdating delegate
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
-    [self searchReposByQuery:searchController.searchBar.text];
+    self.searchQuery = searchController.searchBar.text;
+}
+
+#pragma mark - Private
+
+- (void)searchReposByQuery:(NSString*)searchQuery
+{
+    [[GHNetworkManager sharedManager] searchReposByQuery:searchQuery
+                                                pageSize:REPOS_PAGE_SIZE
+                                                    page:self.page
+                                                 success:^(NSArray<GHRepo *> *repos, NSInteger totalCount) {
+                                                     [self.searchResults addObjectsFromArray:repos];
+                                                     self.maxPages = [self numberOfPagesWithPageSize:REPOS_PAGE_SIZE totalCount:totalCount];
+                                                     [self.tableView reloadData];
+                                                     self.tableView.tableFooterView = [self tableFooterView];
+                                                 }
+                                                 failure:^(NSError *error) {
+                                                     self.maxPages = 0;
+                                                     [self.tableView reloadData];
+                                                     self.tableView.tableFooterView = [self tableFooterView];
+                                                     NSLog(@"%@", error);
+                                                 }];
+}
+
+- (BOOL)searchBarActive
+{
+    return self.searchController.active && self.searchController.searchBar.text.length > 0;
+}
+
+- (UIView *)tableFooterView
+{
+    if (self.page <= self.maxPages)
+    {
+        return self.footerLoadingView;
+    }
+    else
+    {
+        return self.footerEmptyView;
+    }
+}
+
+- (void)showEmptyMessageIfNeeded
+{
+    if (self.searchResults.count == 0)
+    {
+        self.tableView.tableHeaderView = self.headerNoResultsView;
+    }
+    else
+    {
+        self.tableView.tableHeaderView = self.headerEmptyView;
+    }
 }
 
 #pragma mark - Getters/Setters
@@ -78,29 +170,97 @@
         _searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
         _searchController.searchResultsUpdater = self;
         _searchController.dimsBackgroundDuringPresentation = false;
+        _searchController.searchBar.tintColor = [UIColor colorWithRed:0.1 green:0.74 blue:0.61 alpha:1.0];
         self.definesPresentationContext = YES;
         self.tableView.tableHeaderView = _searchController.searchBar;
     }
     return _searchController;
 }
 
-#pragma mark - Private
-
-- (void)searchReposByQuery:(NSString*)searchQuery
+- (NSMutableArray<GHRepo *> *)searchResults
 {
-    [[GHNetworkManager sharedManager] searchReposByQuery:searchQuery
-                                                 success:^(NSArray<GHRepo *> *repos) {
-                                                     self.searchResults = repos;
-                                                     [self.tableView reloadData];
-                                                 }
-                                                 failure:^(NSError *error) {
-                                                     NSLog(@"%@", error);
-                                                 }];
+    if (_searchResults == nil)
+    {
+        _searchResults = [NSMutableArray new];
+    }
+    return _searchResults;
 }
 
-- (BOOL)searchBarActive
+- (void)setSearchQuery:(NSString *)searchQuery
 {
-    return self.searchController.active && self.searchController.searchBar.text.length > 0;
+    if (![_searchQuery isEqualToString:searchQuery])
+    {
+        _searchQuery = searchQuery;
+        self.searchResults = [NSMutableArray new];
+        [self searchReposByQuery:_searchQuery];
+    }
+}
+
+- (NSInteger)page
+{
+    if (_page == 0)
+    {
+        _page = 1;
+    }
+    return _page;
+}
+
+- (NSInteger)numberOfPagesWithPageSize:(NSInteger)pageSize totalCount:(NSInteger)totalCount
+{
+    NSInteger pages = totalCount / pageSize;
+    NSInteger lastPageCount = totalCount % pageSize;
+    if (lastPageCount > 0)
+    {
+        pages += 1;
+    }
+    return pages;
+}
+
+- (UIView*)headerNoResultsView
+{
+    if (_headerNoResultsView == nil)
+    {
+        UILabel* headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 30)];
+        headerLabel.text = @"No repositories was found";
+        headerLabel.textColor = [UIColor colorWithRed:0.28 green:0.28 blue:0.28 alpha:1.0];
+        headerLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13.0];
+        headerLabel.textAlignment = NSTextAlignmentCenter;
+        _headerNoResultsView = headerLabel;
+    }
+    return _headerNoResultsView;
+}
+
+- (UIView *)headerEmptyView
+{
+    if (_headerEmptyView == nil)
+    {
+        _headerEmptyView = [[UIView alloc] initWithFrame:CGRectZero];
+    }
+    return _headerEmptyView;
+}
+
+- (UIView*)footerLoadingView
+{
+    if (_footerLoadingView == nil)
+    {
+        _footerLoadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 40)];
+        _footerLoadingView.backgroundColor = [UIColor clearColor];
+        UIActivityIndicatorView* activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        activityIndicator.frame = CGRectMake((_footerLoadingView.bounds.size.width - 20) / 2, (_footerLoadingView.bounds.size.height - 20) / 2, 20, 20);
+        activityIndicator.color = [UIColor colorWithRed:0.1 green:0.74 blue:0.61 alpha:1.0];
+        [activityIndicator startAnimating];
+        [_footerLoadingView addSubview:activityIndicator];
+    }
+    return _footerLoadingView;
+}
+
+- (UIView*)footerEmptyView
+{
+    if (_footerEmptyView == nil)
+    {
+        _footerEmptyView = [[UIView alloc] initWithFrame:CGRectZero];
+    }
+    return _footerEmptyView;
 }
 
 @end

@@ -7,13 +7,31 @@
 //
 
 #import "GHResponseSerializer.h"
+#import "GHRepo.h"
 
 @implementation GHResponseSerializer
 
-+ (NSArray<GHRepo*>*)reposFromUserResponseObject:(id)response
++ (GHReposResponse *)reposFromUserResponseObject:(id)response
+{
+    GHReposResponse* reposResponse = [GHReposResponse new];
+    reposResponse.repos = [self reposFromArray:response];
+    return reposResponse;
+}
+
++ (GHReposResponse *)reposFromSearchResponseObject:(id)response
+{
+    NSDictionary *responseDict = (NSDictionary *)response;
+    NSArray *responseRepos = responseDict[@"items"];
+    GHReposResponse* reposResponse = [GHReposResponse new];
+    reposResponse.repos = [self reposFromArray:responseRepos];
+    reposResponse.totalCount = [responseDict[@"total_count"] integerValue];
+    return reposResponse;
+}
+
++ (NSArray<GHRepo *> *)reposFromArray:(NSArray*)responseArray
 {
     NSMutableArray<GHRepo*>* repos = [NSMutableArray new];
-    for (NSDictionary* repoDict in response)
+    for (NSDictionary* repoDict in responseArray)
     {
         GHRepo* repo = [GHRepo new];
         repo.repoId = repoDict[@"id"];
@@ -22,13 +40,6 @@
         [repos addObject:repo];
     }
     return repos;
-}
-
-+ (NSArray<GHRepo*>*)reposFromSearchResponseObject:(id)response
-{
-    NSDictionary* responseDict = (NSDictionary*)response;
-    NSArray* responseRepos = responseDict[@"items"];
-    return [self reposFromUserResponseObject:responseRepos];
 }
 
 @end

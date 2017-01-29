@@ -21,6 +21,7 @@
 		B95E649B1E3CD2BC0032A601 /* GHNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B95E649A1E3CD2BC0032A601 /* GHNetworkManager.m */; };
 		B97018E81E3DEDA100966669 /* GHRepoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B97018E61E3DEDA100966669 /* GHRepoCell.m */; };
 		B97018E91E3DEDA100966669 /* GHRepoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B97018E71E3DEDA100966669 /* GHRepoCell.xib */; };
+		B97018EC1E3DF5F200966669 /* GHReposResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B97018EB1E3DF5F200966669 /* GHReposResponse.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,8 @@
 		B97018E51E3DEDA100966669 /* GHRepoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHRepoCell.h; path = UI/Views/GHRepoCell.h; sourceTree = "<group>"; };
 		B97018E61E3DEDA100966669 /* GHRepoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHRepoCell.m; path = UI/Views/GHRepoCell.m; sourceTree = "<group>"; };
 		B97018E71E3DEDA100966669 /* GHRepoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GHRepoCell.xib; path = UI/Views/GHRepoCell.xib; sourceTree = "<group>"; };
+		B97018EA1E3DF5F200966669 /* GHReposResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHReposResponse.h; path = Model/GHReposResponse.h; sourceTree = "<group>"; };
+		B97018EB1E3DF5F200966669 /* GHReposResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHReposResponse.m; path = Model/GHReposResponse.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,10 +142,12 @@
 			children = (
 				B95E64991E3CD2BC0032A601 /* GHNetworkManager.h */,
 				B95E649A1E3CD2BC0032A601 /* GHNetworkManager.m */,
-				B9418D981E3CEAC700367BBC /* GHRepo.h */,
-				B9418D991E3CEAC700367BBC /* GHRepo.m */,
 				B9418D9B1E3CEC6E00367BBC /* GHResponseSerializer.h */,
 				B9418D9C1E3CEC6E00367BBC /* GHResponseSerializer.m */,
+				B9418D981E3CEAC700367BBC /* GHRepo.h */,
+				B9418D991E3CEAC700367BBC /* GHRepo.m */,
+				B97018EA1E3DF5F200966669 /* GHReposResponse.h */,
+				B97018EB1E3DF5F200966669 /* GHReposResponse.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				B97018E81E3DEDA100966669 /* GHRepoCell.m in Sources */,
 				B95E64911E3CC7ED0032A601 /* GHAppDelegate.m in Sources */,
 				B9418D9D1E3CEC6E00367BBC /* GHResponseSerializer.m in Sources */,
+				B97018EC1E3DF5F200966669 /* GHReposResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
