@@ -44,7 +44,6 @@
 {
     [super viewWillAppear:animated];
     self.navigationItem.title = @"Repositories search";
-    //[self showEmptyMessageIfNeeded];
     self.tableView.tableFooterView = [self tableFooterView];
 }
 
