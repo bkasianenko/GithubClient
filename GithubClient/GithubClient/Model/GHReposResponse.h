@@ -11,7 +11,7 @@
 
 @interface GHReposResponse : NSObject
 
-@property (strong, nonatomic) NSArray<GHRepo*>* repos;
+@property (strong, nonatomic) NSArray<GHRepo *> *repos;
 @property (assign, nonatomic) NSInteger totalCount;
 
 @end

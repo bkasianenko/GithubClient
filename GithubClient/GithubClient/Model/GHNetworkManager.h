@@ -16,15 +16,15 @@
 - (void)authUserWithLogin:(NSString *)login
                  password:(NSString *)password
                   success:(void(^)(void))successBlock
-                  failure:(void(^)(NSError* error))failureBlock;
+                  failure:(void(^)(NSError *error))failureBlock;
 
-- (void)fetchUserReposSuccess:(void(^)(NSArray<GHRepo*>* repos, NSInteger totalCount))successBlock
+- (void)fetchUserReposSuccess:(void(^)(NSArray<GHRepo *> *repos, NSInteger totalCount))successBlock
                       failure:(void(^)(NSError* error))failureBlock;
 
-- (void)searchReposByQuery:(NSString*)searchQuery
+- (void)searchReposByQuery:(NSString *)searchQuery
                   pageSize:(NSInteger)pageSize
                       page:(NSInteger)page
-                   success:(void(^)(NSArray<GHRepo*>* repos, NSInteger totalCount))successBlock
+                   success:(void(^)(NSArray<GHRepo *> *repos, NSInteger totalCount))successBlock
                    failure:(void(^)(NSError* error))failureBlock;
 
 @end

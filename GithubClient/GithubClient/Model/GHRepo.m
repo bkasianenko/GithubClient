@@ -10,7 +10,7 @@
 
 @implementation GHRepo
 
-- (NSString*)desc
+- (NSString *)desc
 {
     if ([_desc isEqual:[NSNull null]])
     {

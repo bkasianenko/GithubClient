@@ -11,12 +11,12 @@
 
 @interface GHLoginViewController () <UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UIView* textFieldsView;
-@property (weak, nonatomic) IBOutlet UITextField* loginTextField;
-@property (weak, nonatomic) IBOutlet UITextField* passwordTextField;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView* activityIndicator;
-@property (weak, nonatomic) IBOutlet UIButton* loginButton;
-@property (weak, nonatomic) IBOutlet UILabel* errorLabel;
+@property (weak, nonatomic) IBOutlet UIView *textFieldsView;
+@property (weak, nonatomic) IBOutlet UITextField *loginTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UILabel *errorLabel;
 
 @property (assign, nonatomic) BOOL requestInProgress;
 
@@ -99,17 +99,17 @@
     self.errorLabel.alpha = 0;
 }
 
-- (UIView*)leftViewWithImage:(UIImage*)image
+- (UIView *)leftViewWithImage:(UIImage*)image
 {
-    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 28, 30)];
-    UIImageView* iconView = [[UIImageView alloc] initWithFrame:CGRectMake(6, 6, 18, 18)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 28, 30)];
+    UIImageView *iconView = [[UIImageView alloc] initWithFrame:CGRectMake(6, 6, 18, 18)];
     iconView.image = image;
     iconView.tintColor = [UIColor colorWithRed:0.46 green:0.51 blue:0.61 alpha:1.0];
     [view addSubview:iconView];
     return view;
 }
 
-- (void)presentError:(NSError*)error
+- (void)presentError:(NSError *)error
 {
     self.errorLabel.text = error.localizedDescription;
     [UIView animateWithDuration:0.2

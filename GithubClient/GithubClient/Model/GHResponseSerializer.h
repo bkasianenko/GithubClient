@@ -11,7 +11,7 @@
 
 @interface GHResponseSerializer : NSObject
 
-+ (GHReposResponse*)reposFromUserResponseObject:(id)response;
-+ (GHReposResponse*)reposFromSearchResponseObject:(id)response;
++ (GHReposResponse *)reposFromUserResponseObject:(id)response;
++ (GHReposResponse *)reposFromSearchResponseObject:(id)response;
 
 @end

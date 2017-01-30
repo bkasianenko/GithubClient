@@ -15,16 +15,16 @@
 
 @interface GHReposSearchViewController () <UISearchResultsUpdating>
 
-@property (strong, nonatomic) UISearchController* searchController;
-@property (strong, nonatomic) NSMutableArray<GHRepo*>* searchResults;
+@property (strong, nonatomic) UISearchController *searchController;
+@property (strong, nonatomic) NSMutableArray<GHRepo *> *searchResults;
 @property (assign, nonatomic) NSInteger page;
 @property (assign, nonatomic) NSInteger maxPages;
-@property (strong, nonatomic) NSString* searchQuery;
+@property (strong, nonatomic) NSString *searchQuery;
 
-@property (strong, nonatomic) UIView* headerNoResultsView;
-@property (strong, nonatomic) UIView* headerEmptyView;
-@property (strong, nonatomic) UIView* footerLoadingView;
-@property (strong, nonatomic) UIView* footerEmptyView;
+@property (strong, nonatomic) UIView *headerNoResultsView;
+@property (strong, nonatomic) UIView *headerEmptyView;
+@property (strong, nonatomic) UIView *footerLoadingView;
+@property (strong, nonatomic) UIView *footerEmptyView;
 
 @end
 
@@ -47,7 +47,7 @@
     self.tableView.tableFooterView = [self tableFooterView];
 }
 
-#pragma mark - Table view data source
+#pragma mark - TableView data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -112,7 +112,7 @@
 
 #pragma mark - Private
 
-- (void)searchReposByQuery:(NSString*)searchQuery
+- (void)searchReposByQuery:(NSString *)searchQuery
 {
     [[GHNetworkManager sharedManager] searchReposByQuery:searchQuery
                                                 pageSize:REPOS_PAGE_SIZE
@@ -161,7 +161,7 @@
 
 #pragma mark - Getters/Setters
 
-- (UISearchController*)searchController
+- (UISearchController *)searchController
 {
     if (_searchController == nil)
     {
@@ -203,11 +203,11 @@
     return _page;
 }
 
-- (UIView*)headerNoResultsView
+- (UIView *)headerNoResultsView
 {
     if (_headerNoResultsView == nil)
     {
-        UILabel* headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 30)];
+        UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 30)];
         headerLabel.text = @"No repositories was found";
         headerLabel.textColor = [UIColor colorWithRed:0.28 green:0.28 blue:0.28 alpha:1.0];
         headerLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13.0];
@@ -226,7 +226,7 @@
     return _headerEmptyView;
 }
 
-- (UIView*)footerLoadingView
+- (UIView *)footerLoadingView
 {
     if (_footerLoadingView == nil)
     {
@@ -241,7 +241,7 @@
     return _footerLoadingView;
 }
 
-- (UIView*)footerEmptyView
+- (UIView *)footerEmptyView
 {
     if (_footerEmptyView == nil)
     {
