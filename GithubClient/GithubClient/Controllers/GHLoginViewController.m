@@ -13,14 +13,14 @@
 
 @interface GHLoginViewController () <UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UIView* textFieldsView;
-@property (weak, nonatomic) IBOutlet UITextField* loginTextField;
-@property (weak, nonatomic) IBOutlet UIView* loginTextFieldLeftView;
-@property (weak, nonatomic) IBOutlet UITextField* passwordTextField;
-@property (weak, nonatomic) IBOutlet UIView* passwordTextFieldLeftView;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView* activityIndicator;
-@property (weak, nonatomic) IBOutlet UIButton* loginButton;
-@property (weak, nonatomic) IBOutlet UILabel* errorLabel;
+@property (weak, nonatomic) IBOutlet UIView *textFieldsView;
+@property (weak, nonatomic) IBOutlet UITextField *loginTextField;
+@property (weak, nonatomic) IBOutlet UIView *loginTextFieldLeftView;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UIView *passwordTextFieldLeftView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UILabel *errorLabel;
 
 @property (assign, nonatomic) BOOL requestInProgress;
 
@@ -84,7 +84,7 @@
                                                 }];
 }
 
-- (void)presentError:(NSError*)error
+- (void)presentError:(NSError *)error
 {
     self.errorLabel.text = error.localizedDescription;
     [self setErrorViewHidden:NO];
