@@ -227,7 +227,7 @@
             </objects>
             <point key="canvasLocation" x="928.79999999999995" y="123.68815592203899"/>
         </scene>
-        <!--Repos Search View Controller-->
+        <!--Repositories search-->
         <scene sceneID="CAa-4T-kcZ">
             <objects>
                 <tableViewController extendedLayoutIncludesOpaqueBars="YES" id="BnH-94-4Ya" customClass="GHReposSearchViewController" sceneMemberID="viewController">
@@ -241,9 +241,47 @@
                             <outlet property="delegate" destination="BnH-94-4Ya" id="wl4-k2-zdu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="bbx-p5-fvk"/>
+                    <navigationItem key="navigationItem" title="Repositories search" id="bbx-p5-fvk"/>
+                    <connections>
+                        <outlet property="footerLoadingView" destination="Fkj-Ji-Vfh" id="yWY-Z9-Vyd"/>
+                        <outlet property="headerNoResultsView" destination="mjX-Yr-dbU" id="3qX-uI-cOP"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t0e-Po-hDK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="Fkj-Ji-Vfh">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="HIa-Qn-b4f">
+                            <rect key="frame" x="150" y="10" width="20" height="20"/>
+                            <color key="color" red="0.10000000000000001" green="0.73999999999999999" blue="0.60999999999999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="HIa-Qn-b4f" firstAttribute="centerY" secondItem="Fkj-Ji-Vfh" secondAttribute="centerY" id="V6A-xR-Tuu"/>
+                        <constraint firstItem="HIa-Qn-b4f" firstAttribute="centerX" secondItem="Fkj-Ji-Vfh" secondAttribute="centerX" id="t25-Fu-kSw"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" id="mjX-Yr-dbU">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No repositories was found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1By-No-fIl">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                            <color key="textColor" red="0.27843137254901962" green="0.27843137254901962" blue="0.27843137254901962" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="1By-No-fIl" secondAttribute="trailing" id="2ua-6h-TFU"/>
+                        <constraint firstItem="1By-No-fIl" firstAttribute="top" secondItem="mjX-Yr-dbU" secondAttribute="top" id="O5z-JQ-1HR"/>
+                        <constraint firstItem="1By-No-fIl" firstAttribute="leading" secondItem="mjX-Yr-dbU" secondAttribute="leading" id="cpP-ea-2HR"/>
+                        <constraint firstAttribute="bottom" secondItem="1By-No-fIl" secondAttribute="bottom" id="mCS-VZ-9CR"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="2663" y="124"/>
         </scene>

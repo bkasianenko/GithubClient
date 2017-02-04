@@ -83,8 +83,8 @@
                          if (successBlock != nil)
                          {
                              GHReposResponse* response = [GHResponseSerializer reposFromUserResponseObject:responseObject];
-                             
-                             successBlock(response.repos, response.totalCount);
+                             NSInteger pagesCount = [self numberOfPagesWithPageSize:pageSize totalCount:response.totalCount];
+                             successBlock(response.repos, pagesCount);
                          }
                      }
                      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -98,7 +98,7 @@
 - (void)searchReposByQuery:(NSString *)searchQuery
                   pageSize:(NSInteger)pageSize
                       page:(NSInteger)page
-                   success:(void(^)(NSArray<GHRepo*>* repos, NSInteger totalCount))successBlock
+                   success:(void(^)(NSArray<GHRepo*>* repos, NSInteger pagesCount))successBlock
                    failure:(void(^)(NSError* error))failureBlock
 {
     NSError *queryValidateError = [self validateSearchQuery:searchQuery];

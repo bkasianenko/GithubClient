@@ -26,7 +26,7 @@
 - (void)searchReposByQuery:(NSString *)searchQuery
                   pageSize:(NSInteger)pageSize
                       page:(NSInteger)page
-                   success:(void(^)(NSArray<GHRepo *> *repos, NSInteger totalCount))successBlock
+                   success:(void(^)(NSArray<GHRepo *> *repos, NSInteger pagesCount))successBlock
                    failure:(void(^)(NSError* error))failureBlock;
 
 @end

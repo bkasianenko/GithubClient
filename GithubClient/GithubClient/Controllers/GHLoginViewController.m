@@ -35,6 +35,9 @@
     [super viewWillAppear:animated];
     self.loginTextField.leftView = self.loginTextFieldLeftView;
     self.passwordTextField.leftView = self.passwordTextFieldLeftView;
+    
+    self.loginTextField.text = @"highwindd";
+    self.passwordTextField.text = @"Riseagainst1";
 }
 
 #pragma mark - Actions
