@@ -9,11 +9,15 @@
 #import "GHLoginViewController.h"
 #import "GHNetworkManager.h"
 
+#define ANIM_DURATION 0.2
+
 @interface GHLoginViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView* textFieldsView;
 @property (weak, nonatomic) IBOutlet UITextField* loginTextField;
+@property (weak, nonatomic) IBOutlet UIView* loginTextFieldLeftView;
 @property (weak, nonatomic) IBOutlet UITextField* passwordTextField;
+@property (weak, nonatomic) IBOutlet UIView* passwordTextFieldLeftView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView* activityIndicator;
 @property (weak, nonatomic) IBOutlet UIButton* loginButton;
 @property (weak, nonatomic) IBOutlet UILabel* errorLabel;
@@ -26,21 +30,19 @@
 
 #pragma mark - VC lifecycle
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self setupUI];
+    self.loginTextField.leftView = self.loginTextFieldLeftView;
+    self.passwordTextField.leftView = self.passwordTextFieldLeftView;
 }
 
 #pragma mark - Actions
 
 - (IBAction)loginAction:(id)sender
 {
+    [self.loginTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
     [self login];
 }
 
@@ -82,47 +84,22 @@
                                                 }];
 }
 
-- (void)setupUI
-{
-    self.textFieldsView.backgroundColor = [UIColor clearColor];
-    self.textFieldsView.layer.borderWidth = 1;
-    self.textFieldsView.layer.cornerRadius = 5;
-    self.textFieldsView.layer.borderColor = [UIColor colorWithRed:0.88 green:0.89 blue:0.91 alpha:1.0].CGColor;
-    
-    self.loginTextField.leftViewMode = UITextFieldViewModeAlways;
-    self.loginTextField.leftView = [self leftViewWithImage:[UIImage imageNamed:@"login_username"]];
-    self.passwordTextField.leftViewMode = UITextFieldViewModeAlways;
-    self.passwordTextField.leftView = [self leftViewWithImage:[UIImage imageNamed:@"login_password"]];
-    
-    self.loginButton.layer.cornerRadius = 5;
-    
-    self.errorLabel.alpha = 0;
-}
-
-- (UIView*)leftViewWithImage:(UIImage*)image
-{
-    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 28, 30)];
-    UIImageView* iconView = [[UIImageView alloc] initWithFrame:CGRectMake(6, 6, 18, 18)];
-    iconView.image = image;
-    iconView.tintColor = [UIColor colorWithRed:0.46 green:0.51 blue:0.61 alpha:1.0];
-    [view addSubview:iconView];
-    return view;
-}
-
 - (void)presentError:(NSError*)error
 {
     self.errorLabel.text = error.localizedDescription;
-    [UIView animateWithDuration:0.2
-                     animations:^{
-                         self.errorLabel.alpha = 1;
-                     }];
+    [self setErrorViewHidden:NO];
 }
 
 - (void)hideErrorView
 {
-    [UIView animateWithDuration:0.2
+    [self setErrorViewHidden:YES];
+}
+
+- (void)setErrorViewHidden:(BOOL)hidden
+{
+    [UIView animateWithDuration:ANIM_DURATION
                      animations:^{
-                         self.errorLabel.alpha = 0;
+                         self.errorLabel.alpha = hidden ? 0 : 1;
                      }];
 }
 

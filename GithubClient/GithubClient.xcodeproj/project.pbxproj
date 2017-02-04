@@ -19,6 +19,7 @@
 		B95E64971E3CCAD00032A601 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95E64931E3CCAD00032A601 /* LaunchScreen.storyboard */; };
 		B95E64981E3CCAD00032A601 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95E64951E3CCAD00032A601 /* Main.storyboard */; };
 		B95E649B1E3CD2BC0032A601 /* GHNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B95E649A1E3CD2BC0032A601 /* GHNetworkManager.m */; };
+		B96214651E45BA1900F1A88F /* CALayer+XIBConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = B96214641E45BA1900F1A88F /* CALayer+XIBConfiguration.m */; };
 		B97018E81E3DEDA100966669 /* GHRepoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B97018E61E3DEDA100966669 /* GHRepoCell.m */; };
 		B97018E91E3DEDA100966669 /* GHRepoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B97018E71E3DEDA100966669 /* GHRepoCell.xib */; };
 		B97018EC1E3DF5F200966669 /* GHReposResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B97018EB1E3DF5F200966669 /* GHReposResponse.m */; };
@@ -48,6 +49,8 @@
 		B95E64961E3CCAD00032A601 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = UI/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B95E64991E3CD2BC0032A601 /* GHNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHNetworkManager.h; path = Model/GHNetworkManager.h; sourceTree = "<group>"; };
 		B95E649A1E3CD2BC0032A601 /* GHNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHNetworkManager.m; path = Model/GHNetworkManager.m; sourceTree = "<group>"; };
+		B96214631E45BA1900F1A88F /* CALayer+XIBConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CALayer+XIBConfiguration.h"; path = "Extensions/CALayer+XIBConfiguration.h"; sourceTree = "<group>"; };
+		B96214641E45BA1900F1A88F /* CALayer+XIBConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CALayer+XIBConfiguration.m"; path = "Extensions/CALayer+XIBConfiguration.m"; sourceTree = "<group>"; };
 		B97018E51E3DEDA100966669 /* GHRepoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHRepoCell.h; path = UI/Views/GHRepoCell.h; sourceTree = "<group>"; };
 		B97018E61E3DEDA100966669 /* GHRepoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHRepoCell.m; path = UI/Views/GHRepoCell.m; sourceTree = "<group>"; };
 		B97018E71E3DEDA100966669 /* GHRepoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GHRepoCell.xib; path = UI/Views/GHRepoCell.xib; sourceTree = "<group>"; };
@@ -109,6 +112,7 @@
 				B95E64891E3CC7300032A601 /* Controllers */,
 				B95E648D1E3CC7AC0032A601 /* Model */,
 				B95E648E1E3CC7C60032A601 /* Support */,
+				B96214611E45B96600F1A88F /* Extensions */,
 				B95E647E1E3CC4660032A601 /* Assets.xcassets */,
 				B95E64831E3CC4660032A601 /* Info.plist */,
 				B95E64721E3CC4650032A601 /* Supporting Files */,
@@ -169,6 +173,15 @@
 				B95E64951E3CCAD00032A601 /* Main.storyboard */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		B96214611E45B96600F1A88F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B96214631E45BA1900F1A88F /* CALayer+XIBConfiguration.h */,
+				B96214641E45BA1900F1A88F /* CALayer+XIBConfiguration.m */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		B97018E41E3DED2400966669 /* Views */ = {
@@ -312,6 +325,7 @@
 				B95E64741E3CC4660032A601 /* main.m in Sources */,
 				B9418DA31E3D030400367BBC /* GHReposSearchViewController.m in Sources */,
 				B97018E81E3DEDA100966669 /* GHRepoCell.m in Sources */,
+				B96214651E45BA1900F1A88F /* CALayer+XIBConfiguration.m in Sources */,
 				B95E64911E3CC7ED0032A601 /* GHAppDelegate.m in Sources */,
 				B9418D9D1E3CEC6E00367BBC /* GHResponseSerializer.m in Sources */,
 				B97018EC1E3DF5F200966669 /* GHReposResponse.m in Sources */,

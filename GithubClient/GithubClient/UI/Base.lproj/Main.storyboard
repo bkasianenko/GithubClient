@@ -38,6 +38,11 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Log In"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="loginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OPn-5K-OGE"/>
                                 </connections>
@@ -51,6 +56,11 @@
                                         <color key="textColor" red="0.27843137254901962" green="0.27843137254901962" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftViewMode">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="Vbj-Jh-Q8s"/>
                                         </connections>
@@ -61,6 +71,11 @@
                                         <color key="textColor" red="0.27843137254901962" green="0.27843137254901962" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftViewMode">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="Q5D-oZ-G8N"/>
                                         </connections>
@@ -73,7 +88,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="qID-BB-7xv" secondAttribute="bottom" id="3RX-ez-x0R"/>
                                     <constraint firstAttribute="height" constant="71" id="45f-BO-CBH"/>
@@ -89,12 +104,23 @@
                                     <constraint firstItem="Uoj-iN-CDn" firstAttribute="top" secondItem="KCS-fu-6M8" secondAttribute="top" id="sss-Js-6i9"/>
                                     <constraint firstAttribute="trailing" secondItem="qID-BB-7xv" secondAttribute="trailing" id="xwF-HZ-fVT"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                        <color key="value" red="0.88" green="0.89000000000000001" blue="0.91000000000000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="FJo-zh-GNV">
                                 <rect key="frame" x="293" y="153.5" width="20" height="20"/>
                                 <color key="color" red="0.10227528959512711" green="0.73879390954971313" blue="0.60999447107315063" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xrt-IS-sMK">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xrt-IS-sMK">
                                 <rect key="frame" x="35" y="248" width="250" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <color key="textColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -121,12 +147,61 @@
                         <outlet property="errorLabel" destination="Xrt-IS-sMK" id="5Q9-00-uIs"/>
                         <outlet property="loginButton" destination="u0f-7f-Is7" id="Zrm-tx-BWP"/>
                         <outlet property="loginTextField" destination="Uoj-iN-CDn" id="ghq-Tw-itM"/>
+                        <outlet property="loginTextFieldLeftView" destination="gTL-sv-7i9" id="pQW-eM-TDM"/>
                         <outlet property="passwordTextField" destination="qID-BB-7xv" id="oyz-Oi-FK8"/>
+                        <outlet property="passwordTextFieldLeftView" destination="YPJ-wS-p37" id="DTi-0f-F56"/>
                         <outlet property="textFieldsView" destination="KCS-fu-6M8" id="zwf-qn-tkn"/>
                         <segue destination="07C-zb-zR0" kind="presentation" identifier="ReposListSegue" id="bCy-Og-kRm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="gTL-sv-7i9">
+                    <rect key="frame" x="0.0" y="0.0" width="28" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_username" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W86-Kg-AYw">
+                            <rect key="frame" x="6" y="6" width="18" height="18"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="18" id="b7c-gJ-oWJ"/>
+                                <constraint firstAttribute="height" constant="18" id="ktC-pa-H4s"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                    <color key="value" red="0.45882352941176469" green="0.50980392156862742" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="W86-Kg-AYw" firstAttribute="leading" secondItem="gTL-sv-7i9" secondAttribute="leading" constant="6" id="4KV-Ff-9nk"/>
+                        <constraint firstItem="W86-Kg-AYw" firstAttribute="centerY" secondItem="gTL-sv-7i9" secondAttribute="centerY" id="qhm-ti-xJa"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" id="YPJ-wS-p37">
+                    <rect key="frame" x="0.0" y="0.0" width="28" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_password" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kc8-CT-aIr">
+                            <rect key="frame" x="6" y="6" width="18" height="18"/>
+                            <color key="tintColor" red="0.46000000000000002" green="0.51000000000000001" blue="0.60999999999999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="18" id="Lvr-SX-7ja"/>
+                                <constraint firstAttribute="width" constant="18" id="ywf-y0-uYY"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                    <color key="value" red="0.45882352941176469" green="0.50980392156862742" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="Kc8-CT-aIr" firstAttribute="leading" secondItem="YPJ-wS-p37" secondAttribute="leading" constant="6" id="cEH-3d-7wr"/>
+                        <constraint firstItem="Kc8-CT-aIr" firstAttribute="centerY" secondItem="YPJ-wS-p37" secondAttribute="centerY" id="yhR-rD-E8F"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="116" y="123.68815592203899"/>
         </scene>
@@ -201,5 +276,7 @@
     </scenes>
     <resources>
         <image name="login_github_logo" width="500" height="205"/>
+        <image name="login_password" width="32" height="32"/>
+        <image name="login_username" width="32" height="32"/>
     </resources>
 </document>
