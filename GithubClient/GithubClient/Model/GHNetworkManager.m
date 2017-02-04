@@ -17,8 +17,8 @@
 
 @interface GHNetworkManager()
 
-@property (strong, nonatomic) AFHTTPSessionManager* sessionManager;
-@property (strong, nonatomic) NSString* authHeader;
+@property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
+@property (strong, nonatomic) NSString *authHeader;
 
 @end
 
@@ -41,7 +41,7 @@
                   success:(void(^)(void))successBlock
                   failure:(void(^)(NSError* error))failureBlock
 {
-    NSError* credentialsValidateError = [self validateCredentials:login password:password];
+    NSError *credentialsValidateError = [self validateCredentials:login password:password];
     if (credentialsValidateError != nil)
     {
         if (failureBlock != nil)
@@ -70,8 +70,8 @@
                      }];
 }
 
-- (void)fetchUserReposSuccess:(void(^)(NSArray<GHRepo*>* repos, NSInteger totalCount))successBlock
-                      failure:(void(^)(NSError* error))failureBlock
+- (void)fetchUserReposSuccess:(void(^)(NSArray<GHRepo *> *repos, NSInteger totalCount))successBlock
+                      failure:(void(^)(NSError *error))failureBlock
 {
     [self.sessionManager GET:@"/user/repos"
                   parameters:nil
@@ -91,13 +91,13 @@
                      }];
 }
 
-- (void)searchReposByQuery:(NSString*)searchQuery
+- (void)searchReposByQuery:(NSString *)searchQuery
                   pageSize:(NSInteger)pageSize
                       page:(NSInteger)page
                    success:(void(^)(NSArray<GHRepo*>* repos, NSInteger totalCount))successBlock
                    failure:(void(^)(NSError* error))failureBlock
 {
-    NSError* queryValidateError = [self validateSearchQuery:searchQuery];
+    NSError *queryValidateError = [self validateSearchQuery:searchQuery];
     if (queryValidateError != nil)
     {
         if (failureBlock != nil)
@@ -107,7 +107,7 @@
         return;
     }
     
-    NSMutableDictionary* params = [[NSMutableDictionary alloc] initWithDictionary:@{@"q": searchQuery}];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithDictionary:@{@"q": searchQuery}];
     if (page > 0)
     {
         [params setObject:@(page) forKey:@"page"];
@@ -141,9 +141,9 @@
 {
     if (_sessionManager == nil)
     {
-        NSURL* baseUrl = [NSURL URLWithString:BASE_URL];
-        NSURLSessionConfiguration* configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-        NSMutableDictionary* headers = [NSMutableDictionary new];
+        NSURL *baseUrl = [NSURL URLWithString:BASE_URL];
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        NSMutableDictionary *headers = [NSMutableDictionary new];
         if (self.authHeader != nil)
         {
             [headers setObject:self.authHeader forKey:@"Authorization"];
@@ -157,32 +157,32 @@
 
 #pragma mark - Private
 
-- (NSString*)authHeaderForLogin:(NSString*)login password:(NSString*)password
+- (NSString *)authHeaderForLogin:(NSString *)login password:(NSString *)password
 {
-    NSString* credentials = [NSString stringWithFormat:@"%@:%@", login, password];
-    NSData* credentialsData = [credentials dataUsingEncoding:NSUTF8StringEncoding];
-    NSString* base64Credentials = [credentialsData base64EncodedStringWithOptions:0];
+    NSString *credentials = [NSString stringWithFormat:@"%@:%@", login, password];
+    NSData *credentialsData = [credentials dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *base64Credentials = [credentialsData base64EncodedStringWithOptions:0];
     return [NSString stringWithFormat:@"Basic %@", base64Credentials];
 }
 
-- (NSError*)validateCredentials:(NSString*)login password:(NSString*)password
+- (NSError *)validateCredentials:(NSString *)login password:(NSString *)password
 {
     if (login.length == 0)
     {
-        return [NSError errorWithDomain:@"" code:ERROR_EMPTY_LOGIN userInfo:@{NSLocalizedDescriptionKey: @"Поле логина на заполнено"}];
+        return [NSError errorWithDomain:@"" code:ERROR_EMPTY_LOGIN userInfo:@{NSLocalizedDescriptionKey: @"Login is empty"}];
     }
     if (password.length == 0)
     {
-        return [NSError errorWithDomain:@"" code:ERROR_EMPTY_PASSWORD userInfo:@{NSLocalizedDescriptionKey: @"Поле пароля не заполнено"}];
+        return [NSError errorWithDomain:@"" code:ERROR_EMPTY_PASSWORD userInfo:@{NSLocalizedDescriptionKey: @"Password is empty"}];
     }
     return nil;
 }
 
-- (NSError*)validateSearchQuery:(NSString*)searchQuery
+- (NSError *)validateSearchQuery:(NSString *)searchQuery
 {
     if (searchQuery.length == 0)
     {
-        return [NSError errorWithDomain:@"" code:ERROR_EMPTY_LOGIN userInfo:@{NSLocalizedDescriptionKey: @"Поле поиска пустое"}];
+        return [NSError errorWithDomain:@"" code:ERROR_EMPTY_LOGIN userInfo:@{NSLocalizedDescriptionKey: @"Search query is emptyß®"}];
     }
     return nil;
 }

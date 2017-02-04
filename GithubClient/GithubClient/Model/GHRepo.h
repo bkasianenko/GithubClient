@@ -10,8 +10,8 @@
 
 @interface GHRepo : NSObject
 
-@property (strong, nonatomic) NSString* repoId;
-@property (strong, nonatomic) NSString* name;
-@property (strong, nonatomic) NSString* desc;
+@property (strong, nonatomic) NSString *repoId;
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *desc;
 
 @end
