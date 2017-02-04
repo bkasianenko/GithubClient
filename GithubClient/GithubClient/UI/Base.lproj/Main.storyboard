@@ -245,9 +245,9 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t0e-Po-hDK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1820" y="-573"/>
+            <point key="canvasLocation" x="2663" y="124"/>
         </scene>
-        <!--Repos List View Controller-->
+        <!--Repositories-->
         <scene sceneID="X46-TZ-3Wd">
             <objects>
                 <tableViewController id="AOO-qK-7yx" customClass="GHReposListViewController" sceneMemberID="viewController">
@@ -261,15 +261,53 @@
                             <outlet property="delegate" destination="AOO-qK-7yx" id="iwg-Yp-6Ds"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="rQJ-Re-rWi">
+                    <navigationItem key="navigationItem" title="Repositories" id="rQJ-Re-rWi">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="lWi-Va-U02">
                             <connections>
                                 <segue destination="BnH-94-4Ya" kind="show" id="yql-mj-OgN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="footerLoadingView" destination="IF2-aX-KZY" id="nQJ-mn-jtL"/>
+                        <outlet property="headerNoResultsView" destination="Dmb-GP-tws" id="j4y-5z-J8O"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KaQ-1B-svh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="IF2-aX-KZY">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="qyM-W4-euN">
+                            <rect key="frame" x="150" y="10" width="20" height="20"/>
+                            <color key="color" red="0.10000000000000001" green="0.73999999999999999" blue="0.60999999999999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="qyM-W4-euN" firstAttribute="centerX" secondItem="IF2-aX-KZY" secondAttribute="centerX" id="MWZ-Iz-R7D"/>
+                        <constraint firstItem="qyM-W4-euN" firstAttribute="centerY" secondItem="IF2-aX-KZY" secondAttribute="centerY" id="h8a-7B-rUq"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" id="Dmb-GP-tws">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No repositories was found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLY-bA-obu">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                            <color key="textColor" red="0.28000000000000003" green="0.28000000000000003" blue="0.28000000000000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="DLY-bA-obu" firstAttribute="leading" secondItem="Dmb-GP-tws" secondAttribute="leading" id="C5a-Iz-y2b"/>
+                        <constraint firstAttribute="bottom" secondItem="DLY-bA-obu" secondAttribute="bottom" id="T1m-gu-11s"/>
+                        <constraint firstAttribute="trailing" secondItem="DLY-bA-obu" secondAttribute="trailing" id="ngu-FH-P7F"/>
+                        <constraint firstItem="DLY-bA-obu" firstAttribute="top" secondItem="Dmb-GP-tws" secondAttribute="top" id="uxG-el-Mvp"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="1820" y="124"/>
         </scene>

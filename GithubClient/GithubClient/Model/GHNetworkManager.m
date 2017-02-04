@@ -70,16 +70,20 @@
                      }];
 }
 
-- (void)fetchUserReposSuccess:(void(^)(NSArray<GHRepo *> *repos, NSInteger totalCount))successBlock
-                      failure:(void(^)(NSError *error))failureBlock
+- (void)fetchUserReposWithPageSize:(NSInteger)pageSize
+                              page:(NSInteger)page
+                           success:(void(^)(NSArray<GHRepo *> *repos, NSInteger pagesCount))successBlock
+                           failure:(void(^)(NSError* error))failureBlock
 {
+    NSDictionary* params = @{@"page": @(page), @"per_page": @(pageSize)};
     [self.sessionManager GET:@"/user/repos"
-                  parameters:nil
+                  parameters:params
                     progress:nil
                      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                          if (successBlock != nil)
                          {
                              GHReposResponse* response = [GHResponseSerializer reposFromUserResponseObject:responseObject];
+                             
                              successBlock(response.repos, response.totalCount);
                          }
                      }
@@ -107,16 +111,7 @@
         return;
     }
     
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithDictionary:@{@"q": searchQuery}];
-    if (page > 0)
-    {
-        [params setObject:@(page) forKey:@"page"];
-    }
-    if (pageSize > 0)
-    {
-        [params setObject:@(pageSize) forKey:@"per_page"];
-    }
-    
+    NSDictionary* params = @{@"q": searchQuery, @"page": @(page), @"per_page": @(pageSize)};
     [self.sessionManager GET:@"/search/repositories"
                   parameters:params
                     progress:nil
@@ -124,7 +119,8 @@
                          if (successBlock != nil)
                          {
                              GHReposResponse* response = [GHResponseSerializer reposFromSearchResponseObject:responseObject];
-                             successBlock(response.repos, response.totalCount);
+                             NSInteger pagesCount = [self numberOfPagesWithPageSize:pageSize totalCount:response.totalCount];
+                             successBlock(response.repos, pagesCount);
                          }
                      }
                      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -163,6 +159,17 @@
     NSData *credentialsData = [credentials dataUsingEncoding:NSUTF8StringEncoding];
     NSString *base64Credentials = [credentialsData base64EncodedStringWithOptions:0];
     return [NSString stringWithFormat:@"Basic %@", base64Credentials];
+}
+
+- (NSInteger)numberOfPagesWithPageSize:(NSInteger)pageSize totalCount:(NSInteger)totalCount
+{
+    NSInteger pages = totalCount / pageSize;
+    NSInteger lastPageCount = totalCount % pageSize;
+    if (lastPageCount > 0)
+    {
+        pages += 1;
+    }
+    return pages;
 }
 
 - (NSError *)validateCredentials:(NSString *)login password:(NSString *)password
